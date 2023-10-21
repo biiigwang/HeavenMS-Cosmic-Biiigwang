@@ -6,6 +6,10 @@
 #
 FROM maven:3.9.1-eclipse-temurin-17 AS jar
 
+# Modify Maven image source to domestic source in China to accelerate the construction process,
+# If your server is not in Chinese Mainland, please comment the configuration file
+COPY settings.xml /usr/share/maven/conf/settings.xml
+
 # Build in a separated location which won't have permissions issues.
 WORKDIR /opt/cosmic
 # Any changes to the pom will affect the entire build, so it should be copied first.
